@@ -1,0 +1,32 @@
+2015-10-05 11:29:02,504 INFO Started
+2015-10-05 11:29:02,590 INFO successfully started server
+2015-10-05 11:29:23,237 INFO Stopping http server...
+2015-10-05 11:29:23,237 INFO my successor = [1017457, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,238 INFO my successor = [1017458, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,238 INFO my successor = [1017460, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,238 INFO my successor = [1017464, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,238 INFO my successor = [1017472, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,238 INFO my successor = [1017488, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,238 INFO my successor = [1017520, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,238 INFO my successor = [1017584, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,238 INFO my successor = [1017712, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,238 INFO my successor = [1017968, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,238 INFO my successor = [1018480, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,239 INFO my successor = [1019504, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,239 INFO my successor = [1021552, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,239 INFO my successor = [1025648, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,239 INFO my successor = [1033840, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,239 INFO my successor = [1050224, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,239 INFO my successor = [1082992, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,239 INFO my successor = [1148528, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,239 INFO my successor = [1279600, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,239 INFO my successor = [1541744, 'compute-4-1', 1635611]
+2015-10-05 11:29:23,240 INFO my successor = [2066032, 'compute-16-3', 3536451]
+2015-10-05 11:29:23,240 INFO my successor = [3114608, 'compute-16-3', 3536451]
+2015-10-05 11:29:23,240 INFO my successor = [5211760, 'compute-0-3', 7271109]
+2015-10-05 11:29:23,240 INFO my successor = [9406064, 'compute-8-0', 13846118]
+2015-10-05 11:29:23,240 INFO my successor = [17794672, 'compute-18-1', 19743975]
+2015-10-05 11:29:23,240 INFO map = 
+{}
+2015-10-05 11:29:23,240 INFO size is 0
+2015-10-05 11:29:24,118 INFO Stopping http server...

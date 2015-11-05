@@ -265,4 +265,4 @@ if __name__ == '__main__':
 
 		httpd.stop()
 	# Wait for server thread to exit
-	server_thread.join(100)
+	server_thread.join(1000)

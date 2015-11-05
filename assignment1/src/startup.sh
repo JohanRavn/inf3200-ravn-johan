@@ -4,7 +4,7 @@
 directory="/home/jra020/mandatory-master/assignment1/src/precode/" #current working directory
 executable="backendnode.py";
 
-NUM_HOSTS=10
+NUM_HOSTS=20
 rm hostfile
 sh generate_hosts.sh $NUM_HOSTS
 

@@ -325,7 +325,7 @@ if __name__ == '__main__':
 	except:
 		logger.info("Error: unable to http server thread")
 
-	time.sleep(30)
+	time.sleep(300)
 	node.log_status()
 	time.sleep(5)
 	server_thread.join(5)
