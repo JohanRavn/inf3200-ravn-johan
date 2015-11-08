@@ -4,12 +4,12 @@
 directory="/home/jra020/INF-3200/mandatory/assignment2/src/" #current working directory
 executable="node.py";
 
-NUM_HOSTS=5
+NUM_HOSTS=30
 rm hostfile
 sh generate_hosts.sh $NUM_HOSTS
 
 IFS=$'\n' read -d '' -r -a nodes < hostfile
-nodes=("compute-6-0" "compute-9-0" "compute-12-0" "compute-4-0")
+#nodes=("compute-6-0" "compute-9-0" "compute-12-0" "compute-4-0")
 echo "${nodes[@]}"
 for node in "${nodes[@]}"
 do
@@ -21,7 +21,7 @@ predecessor=${nodes[0]}
 for node in "${nodes[@]}"
 do
   echo "Booting node" $node
-  sleep 1
+  sleep 0.5
   nohup ssh $node bash -c "'python $directory$executable $predecessor grep da * 2> grep-errors$node.txt'"  > /dev/null 2>&1 &
   predecessor=$node
 done

@@ -1,0 +1,128 @@
+%%% DOCUMENT BEGIN
+
+\input{pre}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%          Fill in the title details                      %%%
+
+\def \thetitle {INF-3200 Distributed Systems Fundamentals}
+\def \thesubtitle {Assignment 2}
+%\def \theauthor {Kandidatnummer 0}
+\def \pagecount {3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\pagestyle{fancy}
+\pagestyle{fancyplain} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{1pt} % customise the layout...
+\renewcommand{\footrulewidth}{0pt}
+\lhead{\fancyplain{}{\thetitle{} -- \thesubtitle{}}}\chead{}\rhead{\fancyplain{}}
+\lfoot{}\cfoot{Page {\thepage} of \pagecount}\rfoot{}
+\begin{document}
+
+%%% TITLE PAGE
+
+\begin{titlepage}
+\begin{center}
+
+
+
+\textsc{\\[3.5cm] \huge University of Tromsø}\\[1.5cm]
+
+\textsc{\LARGE \thetitle}\\[0.5cm]
+
+\textsc{\Large \thesubtitle}\\[1.5cm]
+
+%\LARGE{\theauthor} \\[0.5cm] \large{Department of Computer Science}
+
+
+
+\vfill
+{\large \today}
+
+\end{center}
+\thispagestyle{empty}
+\end{titlepage}
+
+\newpage{}
+
+
+%%% TABLE OF CONTENTS
+
+%\tableofcontents
+
+
+\newpage{}
+
+%%% DOCUMENT BODY
+
+%%% Set counter to 1
+\setcounter{page}{1}
+
+\section{Introduction}
+This report will describe a peer-to-peer network. The network will have the ability of nodes joining and leaving.
+One of the nodes in the network will be a leader. 
+\begin{itemize}
+\item Least sum of squares (LS)
+\item Perceptron
+\item Gaussian Naive Bayes
+\item Two-layer perceptron (2LP)
+\item Support vector machine (SVM)
+\item Basic sequential algorithmic scheme(BSAS)
+\end{itemize}	
+
+\section{Technical Background}
+Leader election is a method for deciding which one of the nodes will be the leader. This will change the state of that node to become a leader node.
+All other nodes will then recognize that node as the leader. During each election, only one node will become the leader.
+
+\subsection{Election with unique ID}
+The process with the highest ID will eventually become the leader of the system. Each node will check its own id against the current
+favorite. If the node has a bigger ID it will set itself to the favorite and pass the election message to the next node.
+
+\section{Design}
+In this assignment we have used the chord implementation from the previous implementation as the basis.
+This means that the system will form a ring, where each node knows only about it successor.
+This assignment will implement leader election, joining and leaving on top of that system.
+\subsection{Join}
+During a join, the node will performe a number of operations to set up its state. 
+To be able to join the network the new node needs to know about at least on other node in the network.
+It will then query this node for its own place in the system.
+The new node hooks onto the successor, and updates its new predecessor.
+
+\subsection{Leader election}
+The leader election will be initiated during a \textit{\\getCurrentLeader} message. The node receiving this message will also be in charge
+of initiating the eleciton. This node will pass a election message to all other nodes. The other nodes will then either respond with their own identity or with \textit{None} if they are not a candiate for the leader. When a node has been elected to a leader it will broadcast itself to all other nodes.
+
+\subsection{Leaving}
+A node will leave if it recives the SIGTERM signal. This can be done by killing the process that runs the node.
+When a node leaves it needs to make sure the structure of the system is intact. It will do this by doing the reverse of the action taken by the
+join method. It will update its predecessor's succesor with its own succssor. The leading node can be the leader of the system. It will then have make sure that all other nodes are aware that a new election has be done.
+
+\section{Discussion}
+\subsection{Leader election}
+When starting the program, each node will perform the join method. This method can demanding, therefore the leader election will not happen if a leader is not needed at the moment. The leader election will only happen when there is a need for a leader. Such as during the \textit{\\getCurrentLeader} message. If a leader node leaves the system. A new election will only be held when a leader is required.
+
+\subsection{Complexity}
+The election algorithm in this report is simple. It will have a complexity of $O(n)$, since there will be exactly $n$ messages passed around with a network of size $n$. The program will therefore scale up pretty well. At the minimum all nodes need to agree on the same leader.
+
+
+\section{Implementation}
+Implemented on the uvrocks cluster using python.
+
+\section{Conclusion}
+This system has been tested with up to 30 nodes where it works. It supports leaving and joing nodes on demand.
+The system also support a leader node, where election will happen if they are needed. If a leader leaves the system a new election will be held.
+
+
+%\begin{thebibliography}{9}
+
+%\bibitem{coursebook}
+% Robert Sedgewick
+%  \emph{Algorithms in C - parts 1-4}.
+%  Addison-Wesley Publishing Company,
+%  3. Edition,
+%  1998.
+
+%\end{thebibliography}
+
+\end{document}
