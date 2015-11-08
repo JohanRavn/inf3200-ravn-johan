@@ -36,72 +36,6 @@ class BackendHttpHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 		self.send_header("Content-type", "application/octet-stream")
 		self.end_headers()
 
-	#def do_GET_NODE(self):
-	#	contentLength = int(self.headers['Content-Length'])
-	#	if contentLength <= 0 or contentLength > MAX_CONTENT_LENGHT:
-	#		self.sendErrorResponse(400, "Content body to large")
-	#		return
-	#	res = node.operation_get_nodes(self.path, self.rfile.read(contentLength))
-	#
-	#	self.send_response(200)
-	#	self.send_header("Content-type", "text/html")
-	#	self.end_headers()
-	#	self.wfile.write(res)
-
-		#self.wfile.write(value)
-
-    # Used when the frontend sends a PUT message
-	#def do_PUT(self):
-	#	contentLength = int(self.headers['Content-Length'])
-
-
-	#	if contentLength <= 0 or contentLength > MAX_CONTENT_LENGHT:
-	#		self.sendErrorResponse(400, "Content body to large")
-	#		return
-
-		#node.size += contentLength
-	#	if node.size > MAX_STORAGE_SIZE:
-	#		self.sendErrorResponse(400, "Storage server(s) exhausted")
-			#return
-
-		#node.frontend_put_value(self.path, self.rfile.read(contentLength), contentLength)
-		#self.send_response(200)
-		#self.send_header("Content-type", "application/octet-stream")
-		#self.end_headers()
-
-    # Used to handle gets between the nodes
-	#def do_GET_VALUE(self):
-		#key = self.path
-		#value = node.operation_get_value(key)
-		#if value is None:
-			#self.sendErrorResponse(404, "Key not found")
-			#return
-
-		#self.send_response(200)
-		#self.send_header("Content-type", "application/octet-stream")
-		#self.end_headers()
-
-		#self.wfile.write(value)
-
-    # Used to handle puts between the nodes
-	#def do_PUT_VALUE(self):
-		#contentLength = int(self.headers['Content-Length'])
-
-
-		#if contentLength <= 0 or contentLength > MAX_CONTENT_LENGHT:
-			#self.sendErrorResponse(400, "Content body to large")
-			#return
-
-		#node.size += contentLength
-		#if node.size > MAX_STORAGE_SIZE:
-			#self.sendErrorResponse(400, "Storage server(s) exhausted")
-			#return
-
-		#node.operation_put_value(self.path, self.rfile.read(contentLength), contentLength)
-		#self.send_response(200)
-		#self.send_header("Content-type", "application/octet-stream")
-		#self.end_headers()
-
     # Findes the successor of a key
 	def do_GET_SUCCESSOR(self):
 		identifier = self.path
@@ -114,16 +48,6 @@ class BackendHttpHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 		self.send_header("Content-type", "text/html")
 		self.end_headers()
 		self.wfile.write(successor)
-
-    # A newly joined node will send a message to tell all other nodes that they need
-    # to update their finger table
-	#def do_UPDATE_FINGER_TABLE(self):
-		#identity = self.path
-		#contentLength = int(self.headers['Content-Length'])
-		#self.send_response(200)
-		#self.send_header("Content-type", "application/octet-stream")
-		#self.end_headers()
-		#node.operation_update_finger_table(identity, self.rfile.read(contentLength))
 
     # A newly joined node will tell its predecessor that is needs to update its successor
 	def do_UPDATE_PREDECESSOR(self):

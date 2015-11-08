@@ -61,17 +61,10 @@ class NodeCommunication:
             return False
         return True
 
-    #def update_others_finger_table(self, hostName, portNumber, identity, stopIdentity):
-    #    self.start_put_conn("UPDATE_FINGER_TABLE", hostName, portNumber, identity, stopIdentity)
-
     def update_predecessor(self, hostName, portNumber, identity, newIdentity):
         self.start_put_conn("UPDATE_PREDECESSOR", hostName, portNumber, identity, newIdentity)
 
-    #def put_value(self, hostName, portNumber, key, value):
-    #    self.start_put_conn("PUT_VALUE", hostName, portNumber, key, value)
 
-    #def request_nodes(self, hostName, portNumber, node_list, stopIdentity):
-    #    return self.start_get_conn("GET_NODE", hostName, portNumber, node_list)
     def check_alive(self, hostName, portNumber):
         return self.start_get_conn("GET_ALIVE", hostName, portNumber)
 
@@ -136,24 +129,26 @@ class NodeOperations(NodeHelper):
             return identity
 
     def operation_election(self, identifier, stopIdentity):
-        logger.info("identifier %s stopIdentity %s", identifier, stopIdentity)
+        # Leader elction, iam the leader if my identifier is bigger than all others
         if self.identifier > int(identifier):
+            # if we have reached all nodes
             if stopIdentity == self.fingerTable.get_succ_identity():
-                logger.info("End of round returning myself")
                 return self.identity
+            # pass ahead with new identifier
             res = self.election(self.fingerTable.get_succ_identity(), self.portNumber, str(self.identifier), stopIdentity)
+            # if none set myself to leader
             if res == "None":
                 return self.identity
             else:
                 return res
-
+        #  Pass ahead if i am not a possible leader
+        # also check if we have reached all nodes
         if stopIdentity == self.fingerTable.get_succ_identity():
-            logger.info("returning None")
             return "None"
         else:
-            logger.info(" pass ahead we are lower")
             return self.election(self.fingerTable.get_succ_identity(), self.portNumber, str(identifier), stopIdentity)
 
+    # broadcast new leader
     def operation_put_leader(self, leader, stopIdentity):
         self.leader = leader
         if self.fingerTable.get_succ_identity() != stopIdentity:
@@ -162,20 +157,19 @@ class NodeOperations(NodeHelper):
     def frontend_get_current_leader(self, path):
         # Start first election if leader is None
 
-
+        # Check if a current leader is available
         if self.leader == "None":
+            # start eleciton
             res = self.election(self.fingerTable.get_succ_identity(), self.portNumber, str(self.identifier), self.identity)
+            # If answer is none, i am the lader
             if res == "None":
                 self.leader = self.identity
+            # I am not the leader
             else:
                 self.leader = res
 
             #Broadcast leader
             self.broadcast_leader(self.fingerTable.get_succ_identity(), self.portNumber, self.leader, self.identity)
-            # Start new thread so we can listen for a leader broadcast
-        # should try to connect else.
-        #else:
-        #    return self.leader + ":" + str(self.portNumber)
 
 
 
