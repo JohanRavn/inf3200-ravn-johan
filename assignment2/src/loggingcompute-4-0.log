@@ -1,0 +1,19 @@
+2015-11-08 19:43:30,757 INFO Started
+2015-11-08 19:43:30,757 INFO  My identifier = 582
+2015-11-08 19:43:30,757 INFO successfully started server
+2015-11-08 19:43:30,757 INFO started thread
+2015-11-08 19:43:30,758 INFO starte thread sucesfully
+2015-11-08 19:43:38,730 INFO identifier 290 stopIdentity compute-6-0
+2015-11-08 19:44:10,762 INFO my identity = compute-4-0
+2015-11-08 19:44:10,762 INFO my identifyer = 582
+2015-11-08 19:44:10,762 INFO my successor = [583, 'compute-12-0', 221]
+2015-11-08 19:44:10,762 INFO my successor = [584, 'compute-12-0', 221]
+2015-11-08 19:44:10,762 INFO my successor = [586, 'compute-12-0', 221]
+2015-11-08 19:44:10,762 INFO my successor = [590, 'compute-12-0', 221]
+2015-11-08 19:44:10,762 INFO my successor = [598, 'compute-12-0', 221]
+2015-11-08 19:44:10,762 INFO my successor = [614, 'compute-12-0', 221]
+2015-11-08 19:44:10,762 INFO my successor = [646, 'compute-12-0', 221]
+2015-11-08 19:44:10,763 INFO my successor = [710, 'compute-12-0', 221]
+2015-11-08 19:44:10,763 INFO my successor = [838, 'compute-12-0', 221]
+2015-11-08 19:44:10,763 INFO my successor = [70, 'compute-12-0', 221]
+2015-11-08 19:44:10,763 INFO stopping.....
