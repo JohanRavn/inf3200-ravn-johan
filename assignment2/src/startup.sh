@@ -4,7 +4,7 @@
 directory="/home/jra020/INF-3200/mandatory/assignment2/src/" #current working directory
 executable="node.py";
 
-NUM_HOSTS=30
+NUM_HOSTS=10
 rm hostfile
 sh generate_hosts.sh $NUM_HOSTS
 

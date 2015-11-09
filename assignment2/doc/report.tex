@@ -61,7 +61,7 @@
 
 \section{Introduction}
 This report will describe a peer-to-peer network. The network will have the ability of nodes joining and leaving.
-One of the nodes in the network will be a leader. 
+One of the nodes in the network will be a leader.
 \begin{itemize}
 \item Least sum of squares (LS)
 \item Perceptron
@@ -69,7 +69,7 @@ One of the nodes in the network will be a leader.
 \item Two-layer perceptron (2LP)
 \item Support vector machine (SVM)
 \item Basic sequential algorithmic scheme(BSAS)
-\end{itemize}	
+\end{itemize}
 
 \section{Technical Background}
 Leader election is a method for deciding which one of the nodes will be the leader. This will change the state of that node to become a leader node.
@@ -84,7 +84,7 @@ In this assignment we have used the chord implementation from the previous imple
 This means that the system will form a ring, where each node knows only about it successor.
 This assignment will implement leader election, joining and leaving on top of that system.
 \subsection{Join}
-During a join, the node will performe a number of operations to set up its state. 
+During a join, the node will performe a number of operations to set up its state.
 To be able to join the network the new node needs to know about at least on other node in the network.
 It will then query this node for its own place in the system.
 The new node hooks onto the successor, and updates its new predecessor.
@@ -105,13 +105,36 @@ When starting the program, each node will perform the join method. This method c
 \subsection{Complexity}
 The election algorithm in this report is simple. It will have a complexity of $O(n)$, since there will be exactly $n$ messages passed around with a network of size $n$. The program will therefore scale up pretty well. At the minimum all nodes need to agree on the same leader.
 
+\newpage
+\subsection{Evaluation}
+Performance test for an election with different number of nodes:
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{clccc}
+\toprule
+&nodes     & time  \\\toprule
+& 2      & 0.30     \\
+& 4      & 0.30     \\
+& 8      & 0.40      \\
+& 16     & 0.43      \\
+& 32     & 0.63      \\\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+From the table we can see that the time it takes to elect a leader increases when we run with more nodes.
+
 
 \section{Implementation}
-Implemented on the uvrocks cluster using python.
+Implemented on the uvrocks cluster using python. A bash script is used to run the startup the nodes.
+
 
 \section{Conclusion}
 This system has been tested with up to 30 nodes where it works. It supports leaving and joing nodes on demand.
 The system also support a leader node, where election will happen if they are needed. If a leader leaves the system a new election will be held.
+
+
 
 
 %\begin{thebibliography}{9}

@@ -294,7 +294,7 @@ if __name__ == '__main__':
         node.leave()
         httpd.stop()
     signal.signal(signal.SIGTERM, handler)
-    server_thread.join(50)
+    server_thread.join(200)
 
     node.log_status()
     logger.info("stopping.....")
